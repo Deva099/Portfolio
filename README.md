@@ -18,7 +18,7 @@ This is a premium, developer-focused portfolio designed to showcase projects and
 
 - 🌑 **Sleek Dark Mode**: A deep black aesthetic (`#000000`) for a professional look.
 - 🌌 **Synchronized Dynamic Background**: A subtle, site-wide fading grid and smooth vertical gradients.
-- ✨ **Interactive Skills Section**:
+- 🔥 **Interactive Skills Section**:
   - Themed category cards (Teal, Indigo, Orange).
   - Advanced mouse-tracking spotlight effects.
   - Animated floating tech icons for a modern feel.

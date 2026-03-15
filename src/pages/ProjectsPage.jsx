@@ -1,17 +1,20 @@
-import React, { memo, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight, Github, ArrowLeft } from "lucide-react";
-import { projects } from "../data/projects";
-import { Link } from "react-router-dom";
-
+/**
+ * ProjectsPage.jsx
+ * A dedicated page showcasing all portfolio projects in a high-quality vertical list.
+ * Features:
+ * - Optimized content visibility for performance.
+ * - ProjectRow components with alternating layouts.
+ * - Clean, minimal background synchronized with the rest of the site.
+ */
 const ProjectsPage = () => {
+    // Ensure the page starts at the top when navigated to
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
     return (
         <div className="min-h-screen pt-32 pb-24 relative overflow-hidden text-white">
-            {/* Background Handled Globally */}
+            {/* Standardized Global Background Handled by Background component in App.jsx */}
 
             <div className="container mx-auto px-6 relative z-10 max-w-6xl">
 

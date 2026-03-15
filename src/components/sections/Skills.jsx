@@ -3,7 +3,16 @@ import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { skillsData, skillsHeader } from "../../data/skillsData";
 import { FaReact, FaNodeJs, FaJs, FaHtml5, FaCss3Alt } from "react-icons/fa";
 
+/**
+ * Skills.jsx
+ * Displays skill categories with interactive cards.
+ * Features:
+ * - Floating background tech icons with calm, natural animations.
+ * - Dynamic category cards with themed accent colors.
+ * - Mouse-tracking spotlight effects on cards.
+ */
 export default function Skills() {
+    // Configuration for floating background icons
     const icons = [
         { Icon: FaReact, color: "text-teal-400", size: "text-6xl", pos: "top-10 left-10", duration: 12, range: [-15, 15], delay: 0 },
         { Icon: FaNodeJs, color: "text-green-400", size: "text-5xl", pos: "top-40 right-20", duration: 15, range: [-25, 25], delay: 2 },
@@ -76,7 +85,11 @@ export default function Skills() {
     );
 }
 
-// Robust Spotlight Card
+/**
+ * SpotlightCard Component
+ * An interactive card that tracks mouse movement to create a 
+ * dynamic themed spotlight effect using Framer Motion.
+ */
 const SpotlightCard = ({ category, index, theme }) => {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);

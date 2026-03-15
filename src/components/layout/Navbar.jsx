@@ -6,6 +6,14 @@ import { HashLink } from "react-router-hash-link";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
+/**
+ * Navbar.jsx
+ * A dynamic, responsive navigation bar featuring:
+ * - IntersectionObserver for active section highlighting.
+ * - Scroll-based hide/show behavior.
+ * - Smooth transition from transparent to blurred background on scroll.
+ * - Animated brand logo with Framer Motion.
+ */
 export const Navbar = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,26 +21,32 @@ export const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
   const [show, setShow] = useState(true);
 
+  // Track scroll position for hide/show logic and background changes
   const lastScrollY = useRef(0);
   const isAutoScrolling = useRef(false);
 
   const location = useLocation();
 
+  // Scroll Listener: Handles background opacity and navbar hide/show visibility
   useEffect(() => {
 
     const handleScroll = () => {
 
       const currentY = window.scrollY;
 
+      // Update background state when scrolled past a small threshold
       setIsScrolled(currentY > 20);
 
+      // Disable hide/show logic during programmatic auto-scrolling
       if (isAutoScrolling.current) {
         lastScrollY.current = currentY;
         return;
       }
 
+      // Avoid jitter by checking for a minimum scroll delta
       if (Math.abs(currentY - lastScrollY.current) < 10) return;
 
+      // Hide navbar when scrolling down, show when scrolling up
       if (currentY > lastScrollY.current && currentY > 100) {
         setShow(false);
       } else {
@@ -49,13 +63,14 @@ export const Navbar = () => {
   }, []);
 
 
+  // Active Section Observer: Highlights the current section in the navbar based on viewport visibility
   useEffect(() => {
 
     if (isAutoScrolling.current) return;
 
     const options = {
       root: null,
-      rootMargin: "-20% 0px -60% 0px",
+      rootMargin: "-20% 0px -60% 0px", // Offset to trigger highlight at a natural point
       threshold: 0
     };
 
@@ -72,6 +87,7 @@ export const Navbar = () => {
     }, options);
 
 
+    // Observe all sections defined in navData
     navLinks.forEach(link => {
 
       const sectionId = link.href.replace("#", "");

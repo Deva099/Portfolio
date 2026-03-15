@@ -1,23 +1,21 @@
-import React from 'react'
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
-import { Navbar } from './components/layout/Navbar'
-import Footer from './components/layout/Footer'
-import Background from './components/layout/Background'
-import SmoothScroll from './components/layout/SmoothScroll'
-import ScrollToTop from './components/layout/ScrollToTop'
-import Home from './pages/Home'
-import ProjectsPage from './pages/ProjectsPage'
-import ContactPage from './pages/ContactPage'
-import PrivacyPolicy from './pages/PrivacyPolicy'
-import Terms from './pages/Terms'
-
+/**
+ * App.jsx
+ * The main entry point of the application. 
+ * Handles global routing, layout composition, and global providers.
+ */
 const App = () => {
   return (
     <Router>
+      {/* Ensures the page scrolls to the top on every route change */}
       <ScrollToTop />
+      
+      {/* Provides smooth scrolling behavior across the application */}
       <SmoothScroll>
         <div className='min-h-screen overflow-x-hidden text-white'>
+          {/* Global Background Layer */}
           <Background />
+          
+          {/* Navigation Bar - Fixed at the top */}
           <Navbar />
 
           <Routes>

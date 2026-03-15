@@ -10,9 +10,8 @@ const ProjectsPage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen pt-32 pb-24 relative overflow-hidden bg-black text-white">
-            {/* Optimized Background: Simple subtle gradient instead of complex grid */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent pointer-events-none opacity-20" />
+        <div className="min-h-screen pt-32 pb-24 relative overflow-hidden text-white">
+            {/* Background Handled Globally */}
 
             <div className="container mx-auto px-6 relative z-10 max-w-6xl">
 

@@ -1,25 +1,31 @@
 import { Button } from "../button/Button";
-import { Code, Menu, X } from "lucide-react";
+import { Code, Menu, X, MessageSquare } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { navLinks } from "../../data/navData";
-import { HashLink } from 'react-router-hash-link';
-import { Link, useLocation } from 'react-router-dom';
+import { HashLink } from "react-router-hash-link";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export const Navbar = () => {
-  const [show, setShow] = useState(true);
+
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [show, setShow] = useState(true);
+
   const lastScrollY = useRef(0);
   const isAutoScrolling = useRef(false);
+
   const location = useLocation();
 
-  // Scroll Handler for Navbar Hide/Show ONLY (No layout thrashing)
   useEffect(() => {
+
     const handleScroll = () => {
+
       const currentY = window.scrollY;
 
-      // Hide/Show Navbar Logic
+      setIsScrolled(currentY > 20);
+
       if (isAutoScrolling.current) {
         lastScrollY.current = currentY;
         return;
@@ -37,153 +43,247 @@ export const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", handleScroll);
+
   }, []);
 
-  // IntersectionObserver for Active Section Tracking (Performant)
+
   useEffect(() => {
-    // If auto-scrolling (clicking link), don't let observer interfere immediately
+
     if (isAutoScrolling.current) return;
 
     const options = {
       root: null,
-      rootMargin: "-20% 0px -60% 0px", // Active when element is in top part of screen
+      rootMargin: "-20% 0px -60% 0px",
       threshold: 0
     };
 
     const observer = new IntersectionObserver((entries) => {
+
       entries.forEach((entry) => {
+
         if (entry.isIntersecting && !isAutoScrolling.current) {
-          // Ensure we only update if not currently auto-scrolling
           setActiveSection(`#${entry.target.id}`);
         }
+
       });
+
     }, options);
 
-    // Observe all sections
+
     navLinks.forEach(link => {
-      const sectionId = link.href.replace('#', '');
+
+      const sectionId = link.href.replace("#", "");
       const element = document.getElementById(sectionId);
+
       if (element) observer.observe(element);
+
     });
 
     return () => observer.disconnect();
-  }, [location.pathname]); // Re-run if path changes
+
+  }, [location.pathname]);
 
 
-  // Handle Initial Hash on Load/Route Change
   useEffect(() => {
-    /* eslint-disable react-hooks/set-state-in-effect */
+
     if (location.hash) {
       setActiveSection(location.hash);
-    } else if (location.pathname === '/') {
-      // Default to home if no hash
+    }
+
+    else if (location.pathname === "/") {
       setActiveSection("#home");
     }
-    /* eslint-enable react-hooks/set-state-in-effect */
+
   }, [location]);
 
+
   const handleNavClick = (href) => {
+
     setIsMobileMenuOpen(false);
+
     isAutoScrolling.current = true;
-    setActiveSection(href); // Immediate UI update
+
+    setActiveSection(href);
 
     setTimeout(() => {
       isAutoScrolling.current = false;
     }, 1000);
+
   };
 
 
   return (
     <>
+
       {/* NAVBAR */}
+
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transform transition-transform duration-500 ease-in-out
-        ${show
-            ? "translate-y-0"
-            : "-translate-y-full"}
-          bg-white/0 backdrop-blur-[5px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] `}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
+            ${show ? "translate-y-0" : "-translate-y-full"}
+            ${isScrolled
+            ? "bg-black/60 backdrop-blur-[2px] py-1 shadow-lg"
+            : "bg-transparent py-3"}`}
       >
+
         <div className="container mx-auto px-6 py-3 flex items-center justify-between">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 text-xl font-bold" onClick={() => handleNavClick("#home")}>
-            <Code size={25} className="text-yellow-400" />
+
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-xl font-bold"
+            onClick={() => handleNavClick("#home")}
+          >
+
+            {/* Animated Code Icon */}
+
+            <motion.div
+              initial={{ rotate: -180, scale: 0 }}
+              animate={{ rotate: 0, scale: 1 }}
+              whileHover={{ rotate: 20, scale: 1.2 }}
+              transition={{ type: "spring", stiffness: 200, damping: 10 }}
+            >
+              <Code size={25} className="text-yellow-400" />
+            </motion.div>
+
             <span className="bg-linear-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text">
               Deva
             </span>
+
           </Link>
 
+
           {/* Desktop Nav */}
+
           <div className="hidden md:flex items-center gap-3">
-            <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/40 p-1 backdrop-blur-md relative">
+
+            <div className="flex items-center gap-1 rounded-md border border-white/10 bg-black/40 p-1 backdrop-blur-md relative">
+
               {navLinks.map((link, index) => {
-                const isActive = activeSection === link.href;
+
+                const isActive =
+                  activeSection === link.href ||
+                  activeSection === `#${link.href.replace("#", "")}`;
+
                 return (
+
                   <HashLink
                     key={index}
                     smooth
                     to={`/${link.href}`}
                     onClick={() => handleNavClick(link.href)}
-                    className={`relative px-5 py-2 text-sm rounded-full transition-colors z-10 ${isActive ? "text-black font-medium" : "text-white hover:text-white/80"}`}
+                    className={`relative px-6 py-1.5 text-[15px] font-medium transition-colors z-10
+                    ${isActive ? "text-black" : "text-white hover:text-gray-200"}`}
                   >
+
                     {isActive && (
+
                       <motion.span
                         layoutId="activeSection"
-                        className="absolute inset-0 bg-white rounded-full -z-10"
+                        className="absolute inset-0 bg-[#ebebeb] rounded-md -z-10 shadow-sm"
                         transition={{
                           type: "spring",
                           stiffness: 380,
                           damping: 30
                         }}
                       />
+
                     )}
+
                     {link.label}
+
                   </HashLink>
+
                 )
+
               })}
+
             </div>
 
+
             <Link to="/contact">
-              <Button size="sm" className="px-5 py-2.5 rounded-full border border-white/20 bg-black/40 text-white font-medium transition-all duration-300 hover:bg-white hover:text-black hover:border-white">
-                Let's chat
-              </Button>
+
+              <button className="group flex items-center gap-2 px-5 py-2.5 rounded-md border border-[#ea5b34] bg-transparent text-[#ea5b34] text-[15px] font-semibold hover:text-[#cbbfff] hover:border-[#ede9ffc8] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-sm hover:shadow-blue-500/10">
+
+                <span>Let's chat</span>
+
+              </button>
+
             </Link>
+
           </div>
 
-          {/* Mobile Menu Button */}
+
+          {/* Mobile Menu */}
+
           <button
             className="md:hidden p-2 text-white"
-            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            onClick={() => setIsMobileMenuOpen(prev => !prev)}
           >
             {isMobileMenuOpen ? <X /> : <Menu />}
           </button>
+
         </div>
+
       </nav>
 
+
       {/* MOBILE MENU */}
+
       {isMobileMenuOpen && (
-        <div className="fixed top-16 left-0 w-full z-40 bg-black/60 backdrop-blur-lg md:hidden">
-          <div className="px-6 py-6 flex flex-col gap-4">
-            {navLinks.map((link, index) => (
-              <HashLink
-                key={index}
-                smooth
-                to={`/${link.href}`}
-                onClick={() => handleNavClick(link.href)}
-                className="text-white text-lg"
-              >
-                {link.label}
-              </HashLink>
-            ))}
+
+        <div className="fixed top-16 left-0 w-full z-40 bg-black/80 backdrop-blur-lg md:hidden border-t border-white/10">
+
+          <div className="px-6 py-6 flex flex-col gap-2">
+
+            {navLinks.map((link, index) => {
+
+              const isActive =
+                activeSection === link.href ||
+                activeSection === `#${link.href.replace("#", "")}`;
+
+              return (
+
+                <HashLink
+                  key={index}
+                  smooth
+                  to={`/${link.href}`}
+                  onClick={() => handleNavClick(link.href)}
+                  className={`block px-4 py-3 rounded-xl text-lg font-medium transition-colors
+                  ${isActive
+                      ? "bg-[#ebebeb] text-black"
+                      : "text-white hover:bg-white/10"}`}
+                >
+
+                  {link.label}
+
+                </HashLink>
+
+              );
+
+            })}
+
+
             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button>
-                Contact Me
-              </Button>
+
+              <button className="w-full mt-2 flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#ea5b34] bg-transparent text-[#ea5b34] text-[16px] font-bold hover:text-blue-500 hover:border-blue-500 transition-all duration-300">
+
+                <MessageSquare size={20} />
+
+                <span>Let's chat</span>
+
+              </button>
+
             </Link>
+
           </div>
+
         </div>
+
       )}
+
     </>
   );
 };

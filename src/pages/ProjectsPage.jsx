@@ -1,3 +1,9 @@
+import React, { memo, useEffect } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Github, ArrowLeft } from "lucide-react";
+import { projects } from "../data/projects";
+import { Link } from "react-router-dom";
+
 /**
  * ProjectsPage.jsx
  * A dedicated page showcasing all portfolio projects in a high-quality vertical list.

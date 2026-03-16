@@ -134,10 +134,7 @@ export const Navbar = () => {
 
             {/* Let's Chat button - independent */}
             <Link to="/contact" onClick={() => handleNavClick("")}>
-              <button className={`group flex items-center gap-2 px-5 py-2.5 rounded-md border transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-sm hover:shadow-blue-500/10
-                ${location.pathname === '/contact' 
-                  ? 'bg-[#ebebeb] text-black border-white' 
-                  : 'bg-transparent text-[#ea5b34] border-[#ea5b34] hover:text-[#cbbfff] hover:border-[#ede9ffc8]'}`}>
+              <button className="group flex items-center gap-2 px-5 py-2.5 rounded-md border border-[#ea5b34] bg-transparent text-[#ea5b34] text-[15px] font-semibold hover:text-[#cbbfff] hover:border-[#ede9ffc8] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-sm hover:shadow-blue-500/10">
                 <span>Let's chat</span>
               </button>
             </Link>
@@ -173,10 +170,7 @@ export const Navbar = () => {
 
             {/* Let's Chat button in mobile menu */}
             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-              <button className={`w-full mt-2 flex items-center justify-center gap-2 px-6 py-3 rounded-xl border font-bold transition-all duration-300
-                ${location.pathname === '/contact'
-                  ? 'bg-[#ebebeb] text-black border-white'
-                  : 'bg-transparent text-[#ea5b34] border-[#ea5b34] hover:text-blue-500 hover:border-blue-500'}`}>
+              <button className="w-full mt-2 flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#ea5b34] bg-transparent text-[#ea5b34] text-[16px] font-bold hover:text-blue-500 hover:border-blue-500 transition-all duration-300">
                 <MessageSquare size={20} />
                 <span>Let's chat</span>
               </button>

@@ -44,8 +44,8 @@ This is a premium, developer-focused portfolio designed to showcase projects and
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/Deva099/My_Portfolio001.git
-   cd My_Portfolio001
+   git clone https://github.com/Deva099/Portfolio.git
+   cd Portfolio
    ```
 
 2. **Install dependencies**:

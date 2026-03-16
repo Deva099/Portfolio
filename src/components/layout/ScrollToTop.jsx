@@ -1,27 +1,15 @@
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
-    const navigate = useNavigate();
 
     useEffect(() => {
-        // Force redirect to home on initial load/refresh to satisfy "always start home" requirement
-        if (pathname !== '/' || window.location.hash !== '') {
-            navigate('/', { replace: true });
-            // For HashRouter, sometimes we need to manually clean the hash
-            window.history.replaceState(null, '', window.location.pathname + window.location.search);
-        }
-
         // Prevent browser from restoring scroll position on refresh
         if ('scrollRestoration' in window.history) {
             window.history.scrollRestoration = 'manual';
         }
 
-        window.scrollTo(0, 0);
-    }, [navigate]); // Only run once on mount
-
-    useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
 

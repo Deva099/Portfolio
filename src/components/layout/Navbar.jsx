@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { navLinks } from "../../data/navData";
 import { HashLink } from "react-router-hash-link";
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);

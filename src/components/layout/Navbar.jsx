@@ -61,8 +61,14 @@ export const Navbar = () => {
 
   // Handle location change
   useEffect(() => {
-    if (location.hash) setActiveSection(location.hash);
-    else if (location.pathname === "/") setActiveSection("#home");
+    if (location.hash) {
+      setActiveSection(location.hash);
+    } else if (location.pathname === "/") {
+      setActiveSection("#home");
+    } else {
+      // Clear active highlight on standalone pages like /contact
+      setActiveSection("");
+    }
   }, [location]);
 
   // Nav click
@@ -103,9 +109,16 @@ export const Navbar = () => {
                     smooth
                     to={`/${link.href}`}
                     onClick={() => handleNavClick(link.href)}
-                    className={`relative px-6 py-1.5 text-[15px] font-medium transition-colors z-10 rounded-md
-                      ${isActive ? "text-black bg-[#ebebeb] shadow-sm" : "text-white hover:text-gray-200"}`}
+                    className={`relative px-6 py-1.5 text-[15px] font-medium transition-colors z-10
+                      ${isActive ? "text-black" : "text-white hover:text-gray-200"}`}
                   >
+                    {/* White box highlight without jump */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeHighlight"
+                        className="absolute inset-0 bg-[#ebebeb] rounded-md -z-10 shadow-sm"
+                      />
+                    )}
                     {link.label}
                   </HashLink>
                 );
@@ -113,14 +126,14 @@ export const Navbar = () => {
             </div>
 
             {/* Let's Chat button - independent */}
-            <HashLink 
-              smooth
-              to="/#contact"
-              onClick={() => handleNavClick("#contact")}
-              className="group flex items-center gap-2 px-5 py-2.5 rounded-md border border-[#ea5b34] bg-transparent text-[#ea5b34] text-[15px] font-semibold hover:text-[#cbbfff] hover:border-[#ede9ffc8] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-sm hover:shadow-blue-500/10"
-            >
-              <span>Let's chat</span>
-            </HashLink>
+            <Link to="/contact" onClick={() => handleNavClick("")}>
+              <button className={`group flex items-center gap-2 px-5 py-2.5 rounded-md border transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-sm hover:shadow-blue-500/10
+                ${location.pathname === '/contact' 
+                  ? 'bg-[#ebebeb] text-black border-white' 
+                  : 'bg-transparent text-[#ea5b34] border-[#ea5b34] hover:text-[#cbbfff] hover:border-[#ede9ffc8]'}`}>
+                <span>Let's chat</span>
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -153,18 +166,15 @@ export const Navbar = () => {
             })}
 
             {/* Let's Chat button in mobile menu */}
-            <HashLink 
-              smooth
-              to="/#contact"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                handleNavClick("#contact");
-              }}
-              className="w-full mt-2 flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#ea5b34] bg-transparent text-[#ea5b34] text-[16px] font-bold hover:text-blue-500 hover:border-blue-500 transition-all duration-300"
-            >
-              <MessageSquare size={20} />
-              <span>Let's chat</span>
-            </HashLink>
+            <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+              <button className={`w-full mt-2 flex items-center justify-center gap-2 px-6 py-3 rounded-xl border font-bold transition-all duration-300
+                ${location.pathname === '/contact'
+                  ? 'bg-[#ebebeb] text-black border-white'
+                  : 'bg-transparent text-[#ea5b34] border-[#ea5b34] hover:text-blue-500 hover:border-blue-500'}`}>
+                <MessageSquare size={20} />
+                <span>Let's chat</span>
+              </button>
+            </Link>
           </div>
         </div>
       )}

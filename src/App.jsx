@@ -1,5 +1,6 @@
 import React from 'react'
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import { Navbar } from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Background from './components/layout/Background'
@@ -10,6 +11,26 @@ import ProjectsPage from './pages/ProjectsPage'
 import ContactPage from './pages/ContactPage'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Terms from './pages/Terms'
+
+/**
+ * AnimatedRoutes Component
+ * Handles the logic for route transitions using AnimatePresence.
+ */
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<Terms />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 /**
  * App.jsx
@@ -31,14 +52,7 @@ const App = () => {
           {/* Navigation Bar - Fixed at the top */}
           <Navbar />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<Terms />} />
-          </Routes>
-
+          <AnimatedRoutes />
 
           <Footer />
         </div>

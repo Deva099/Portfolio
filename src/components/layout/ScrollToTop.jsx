@@ -6,9 +6,11 @@ const ScrollToTop = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Force redirect to home on initial load/refresh
-        if (pathname !== '/') {
+        // Force redirect to home on initial load/refresh to satisfy "always start home" requirement
+        if (pathname !== '/' || window.location.hash !== '') {
             navigate('/', { replace: true });
+            // For HashRouter, sometimes we need to manually clean the hash
+            window.history.replaceState(null, '', window.location.pathname + window.location.search);
         }
 
         // Prevent browser from restoring scroll position on refresh

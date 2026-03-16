@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my_portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/Portfolio/assets/index-BgmHR-hd.js"></script>
+    <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-2ySOLZPW.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        // Create a visible error box if React fails to mount
+        const errorBox = document.createElement('div');
+        errorBox.style.position = 'fixed';
+        errorBox.style.top = '0';
+        errorBox.style.left = '0';
+        errorBox.style.width = '100%';
+        errorBox.style.backgroundColor = '#990000';
+        errorBox.style.color = 'white';
+        errorBox.style.padding = '20px';
+        errorBox.style.zIndex = '9999';
+        errorBox.style.fontFamily = 'monospace';
+        errorBox.style.whiteSpace = 'pre-wrap';
+        errorBox.innerText = 'Global Error: ' + message + '\n' + source + ':' + lineno;
+        document.body.appendChild(errorBox);
+      };
+    </script>
+  </body>
+</html>

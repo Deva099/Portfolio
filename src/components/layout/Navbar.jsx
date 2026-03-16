@@ -60,7 +60,7 @@ export const Navbar = () => {
     return () => observer.disconnect();
   }, [location.pathname]);
 
-  // Handle location change
+  // Route handling (no reset)
   useEffect(() => {
     if (location.pathname === "/") {
       if (location.hash) {
@@ -68,21 +68,17 @@ export const Navbar = () => {
       } else {
         setActiveSection("#home");
       }
-    } else {
-      // We are on a standalone page like /contact
-      setActiveSection("");
     }
   }, [location]);
 
-  // Nav click
+  // Nav click (no reset)
   const handleNavClick = (href) => {
     setIsMobileMenuOpen(false);
+
     if (href) {
       isAutoScrolling.current = true;
       setActiveSection(href);
       setTimeout(() => (isAutoScrolling.current = false), 1000);
-    } else {
-      setActiveSection("");
     }
   };
 
@@ -96,7 +92,11 @@ export const Navbar = () => {
       >
         <div className="container mx-auto px-6 py-3 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 text-xl font-bold" onClick={() => handleNavClick("#home")}>
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-xl font-bold"
+            onClick={() => handleNavClick("#home")}
+          >
             <Code size={25} className="text-yellow-400" />
             <span className="bg-linear-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text">
               Deva
@@ -118,10 +118,10 @@ export const Navbar = () => {
                     className={`relative px-6 py-1.5 text-[15px] font-medium transition-colors z-10
                       ${isActive ? "text-black" : "text-white hover:text-gray-200"}`}
                   >
-                    {/* White box highlight */}
+                    {/* ✅ FIX: layoutId only on home page */}
                     {isActive && (
                       <motion.div
-                        layoutId="activeHighlight"
+                        layoutId={location.pathname === "/" ? "activeHighlight" : undefined}
                         className="absolute inset-0 bg-[#ebebeb] rounded-md -z-10 shadow-sm"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
@@ -132,7 +132,7 @@ export const Navbar = () => {
               })}
             </div>
 
-            {/* Let's Chat button - independent */}
+            {/* Let's Chat button */}
             <Link to="/contact" onClick={() => handleNavClick("")}>
               <button className="group flex items-center gap-2 px-5 py-2.5 rounded-md border border-[#ea5b34] bg-transparent text-[#ea5b34] text-[15px] font-semibold hover:text-[#cbbfff] hover:border-[#ede9ffc8] transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-sm hover:shadow-blue-500/10">
                 <span>Let's chat</span>
@@ -141,7 +141,10 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden p-2 text-white" onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
+          <button
+            className="md:hidden p-2 text-white"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          >
             {isMobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
@@ -168,7 +171,6 @@ export const Navbar = () => {
               );
             })}
 
-            {/* Let's Chat button in mobile menu */}
             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
               <button className="w-full mt-2 flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#ea5b34] bg-transparent text-[#ea5b34] text-[16px] font-bold hover:text-blue-500 hover:border-blue-500 transition-all duration-300">
                 <MessageSquare size={20} />

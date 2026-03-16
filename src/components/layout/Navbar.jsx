@@ -61,12 +61,14 @@ export const Navbar = () => {
 
   // Handle location change
   useEffect(() => {
-    if (location.hash) {
-      setActiveSection(location.hash);
-    } else if (location.pathname === "/") {
-      setActiveSection("#home");
+    if (location.pathname === "/") {
+      if (location.hash) {
+        setActiveSection(location.hash);
+      } else {
+        setActiveSection("#home");
+      }
     } else {
-      // Clear active highlight on standalone pages like /contact
+      // We are on a standalone page like /contact
       setActiveSection("");
     }
   }, [location]);
@@ -74,9 +76,13 @@ export const Navbar = () => {
   // Nav click
   const handleNavClick = (href) => {
     setIsMobileMenuOpen(false);
-    isAutoScrolling.current = true;
-    setActiveSection(href);
-    setTimeout(() => (isAutoScrolling.current = false), 1000);
+    if (href) {
+      isAutoScrolling.current = true;
+      setActiveSection(href);
+      setTimeout(() => (isAutoScrolling.current = false), 1000);
+    } else {
+      setActiveSection("");
+    }
   };
 
   return (
@@ -100,8 +106,7 @@ export const Navbar = () => {
           <div className="hidden md:flex items-center gap-3">
             <div className="flex items-center gap-1 rounded-md border border-white/10 bg-black/40 p-1 backdrop-blur-md relative">
               {navLinks.map((link, idx) => {
-                const isActive =
-                  activeSection === link.href || activeSection === `#${link.href.replace("#", "")}`;
+                const isActive = activeSection === link.href;
 
                 return (
                   <HashLink
@@ -112,11 +117,12 @@ export const Navbar = () => {
                     className={`relative px-6 py-1.5 text-[15px] font-medium transition-colors z-10
                       ${isActive ? "text-black" : "text-white hover:text-gray-200"}`}
                   >
-                    {/* White box highlight without jump */}
+                    {/* White box highlight */}
                     {isActive && (
                       <motion.div
                         layoutId="activeHighlight"
                         className="absolute inset-0 bg-[#ebebeb] rounded-md -z-10 shadow-sm"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
                     {link.label}
@@ -148,8 +154,7 @@ export const Navbar = () => {
         <div className="fixed top-16 left-0 w-full z-40 bg-black/80 backdrop-blur-lg md:hidden border-t border-white/10">
           <div className="px-6 py-6 flex flex-col gap-2">
             {navLinks.map((link, idx) => {
-              const isActive =
-                activeSection === link.href || activeSection === `#${link.href.replace("#", "")}`;
+              const isActive = activeSection === link.href;
 
               return (
                 <HashLink

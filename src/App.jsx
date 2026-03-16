@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer'
 import Background from './components/layout/Background'
 import SmoothScroll from './components/layout/SmoothScroll'
 import ScrollToTop from './components/layout/ScrollToTop'
+import ScrollToHash from './components/layout/ScrollToHash'
 import Home from './pages/Home'
 import ProjectsPage from './pages/ProjectsPage'
 import ContactPage from './pages/ContactPage'
@@ -42,6 +43,8 @@ const App = () => {
     <Router>
       {/* Ensures the page scrolls to the top on every route change */}
       <ScrollToTop />
+      {/* Ensures hash links scroll to target on cross-page navigation */}
+      <ScrollToHash />
       
       {/* Provides smooth scrolling behavior across the application */}
       <SmoothScroll>

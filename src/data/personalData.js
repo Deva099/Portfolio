@@ -1,26 +1,26 @@
 export const PERSONAL_INFO = {
-    name: 'DevA',
-    fullName: 'Deva Pradhan',
+    name: 'Dibakar',
+    fullName: 'Dibakar Pradhan',
     title: 'Full Stack Developer & UI/UX Enthusiast',
     email: 'devapradhan120@gmail.com',
-    location: 'Sambalpur, Odisha',
-    tagline: '',
+    location: 'Sambalpur, Odisha, India',
+    tagline: 'Building clean, responsive, and scalable web applications.',
     resume: 'https://github.com/Deva099',
     bio: [
-        "I'm a B.Tech graduate and Full-Stack Developer specializing in building modern, scalable web applications.",
+        "I'm a B.Tech student and Full-Stack Developer specializing in building modern, scalable web applications.",
         "I work with React, Node.js, and databases to create clean, responsive, and high-performance solutions.",
         "I'm passionate about turning ideas into real-world products through code."
     ],
     contact: {
-        email: "devapradhan130@gmail.com",
-        location: "Gorakhpur, India",
-        phone: "+91 91234 56789"
+        email: "devapradhan120@gmail.com",
+        location: "Sambalpur, Odisha, India",
+        phone: "+91 6207230312"
     }
 };
 
 export const SOCIAL_LINKS = {
     github: 'https://github.com/Deva099',
-    linkedin: '#',
-    instagram: '#',
+    linkedin: 'https://linkedin.com/in/dibakar-pradhan',
+    instagram: 'https://instagram.com/dibakar_pradhan',
     twitter: '#'
 };

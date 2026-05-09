@@ -1,45 +1,39 @@
-// import project1 from "../assets/images/project-1.jpg"; // TOO LARGE (11MB) - Causing lag
-const project1 = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"; // Optimized placeholder
-import project2 from "../assets/img/project-2.jpg";
-import project3 from "../assets/img/project-3.jpg";
-import project4 from "../assets/img/project-4.jpg";
-
-
+// Clean dark tech preview images
+const imgVoiceAssistance = "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"; // Tech circuit / AI
+const imgPortfolio = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"; // Clean dashboard/code
+const imgEcommerce = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"; // Analytics dashboard
+const imgTaskApp = "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80"; // Clean UI
 
 export const projects = [
   {
-    title: "Fintech Dashboard",
-    description:
-      "A comprehensive financial analytics platform with real-time data visualization, portfolio management, and AI-powered insights.",
-    image: project1,
-    tags: ["React", "Typescript", "NodeJS"],
+    title: "AI Voice Assistant",
+    description: "Local-first voice assistant that understands commands and performs desktop actions.",
+    image: imgVoiceAssistance,
+    tags: ["React", "Node.js", "Python", "Vosk"],
     link: "#",
     github: "#",
   },
   {
-    title: "E-Commerce Platform",
-    description:
-      "A full-featured e-commerce solution with inventory management, payment processing, and analytics dashboard.",
-    image: project2,
-    tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
+    title: "Portfolio Website",
+    description: "Modern responsive portfolio with dark UI, animations, and clean branding.",
+    image: imgPortfolio,
+    tags: ["React", "TypeScript", "Tailwind"],
     link: "#",
     github: "#",
   },
   {
-    title: "AI Writing Assistant",
-    description:
-      "An intelligent writing tool powered by GPT-4, helping users create better content faster.",
-    image: project3,
-    tags: ["React", "OpenAI", "Python", "FastAPI"],
+    title: "E-Commerce Dashboard",
+    description: "Admin dashboard for products, orders, users, and analytics.",
+    image: imgEcommerce,
+    tags: ["Next.js", "Node.js", "MongoDB"],
     link: "#",
     github: "#",
   },
   {
-    title: "Project Management Tool",
-    description:
-      "A collaborative workspace for teams with real-time updates, task tracking, and integrations.",
-    image: project4,
-    tags: ["Next.js", "Socket.io", "MongoDB", "Redis"],
+    title: "Task Management App",
+    description: "Collaborative task board with teams, status tracking, and real-time updates.",
+    image: imgTaskApp,
+    tags: ["React", "Node.js", "Socket.io"],
     link: "#",
     github: "#",
   },

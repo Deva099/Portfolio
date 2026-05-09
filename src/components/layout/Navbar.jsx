@@ -98,7 +98,7 @@ export const Navbar = () => {
             onClick={() => handleNavClick("#home")}
           >
             <Code size={25} className="text-yellow-400" />
-            <span className="bg-linear-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-teal-500 via-orange-500 to-yellow-500 text-transparent bg-clip-text">
               Deva
             </span>
           </Link>

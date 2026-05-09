@@ -1,42 +1,36 @@
 export const timelineHeader = {
-  title: "Experience"
+  title: "Education"
 };
 
 export const timeline = [
   {
-    period: "2022 — Present",
-    role: "Senior Frontend Engineer",
-    company: "Tech Innovators Inc.",
+    period: "2021 — 2025",
+    role: "Bachelor of Technology in Computer Science",
+    company: "Biju Patnaik University of Technology",
     description:
-      "Leading frontend architecture for a suite of fintech products. Implemented micro-frontend architecture, reduced bundle size by 40%, and mentored a team of 5 developers.",
-    technologies: ["React", "TypeScript", "Next.js", "GraphQL"],
+      "Currently pursuing an undergraduate degree with a core focus on Software Engineering and Modern Web Technologies. Developing a strong foundation in computational logic, system design, and scalable application development.",
+    technologies: ["Data Structures", "Algorithms", "React", "Node.js", "DBMS", "OS"],
+    grade: "8.5 CGPA (Final Year)",
     current: true,
   },
   {
-    period: "2020 — 2022",
-    role: "Frontend Engineer",
-    company: "Digital Solutions Co.",
+    period: "2019 — 2021",
+    role: "Higher Secondary Education (Class XII)",
+    company: "St. Paul's College, Ranchi",
     description:
-      "Built and maintained multiple React applications for enterprise clients. Introduced automated testing practices that improved code coverage to 85%.",
-    technologies: ["React", "Redux", "Jest", "Cypress"],
-    current: false,
-  },
-  {
-    period: "2019 — 2020",
-    role: "Junior Developer",
-    company: "StartUp Labs",
-    description:
-      "Contributed to the development of a SaaS platform from MVP to production. Collaborated with designers to implement pixel-perfect UI components.",
-    technologies: ["React", "Node.js", "MongoDB", "AWS"],
+      "Successfully completed senior secondary education in the Science stream (PCM). Developed analytical thinking and problem-solving skills through rigorous coursework in Physics and Mathematics.",
+    technologies: ["Physics", "Chemistry", "Mathematics", "Computer Science"],
+    grade: "76% (JAC Board)",
     current: false,
   },
   {
     period: "2018 — 2019",
-    role: "Freelance Developer",
-    company: "Self-Employed",
+    role: "Secondary School Education (Class X)",
+    company: "SS+2 High School, Jharkhand",
     description:
-      "Delivered custom web solutions for small businesses and startups. Built 15+ websites and applications, handling everything from design to deployment.",
-    technologies: ["JavaScript", "PHP", "WordPress", "MySQL"],
+      "Achieved foundational excellence in general sciences and mathematics, laying the groundwork for a technical career path.",
+    technologies: ["Mathematics", "General Science", "Social Science", "English"],
+    grade: "78% (JAC Board)",
     current: false,
   },
 ];

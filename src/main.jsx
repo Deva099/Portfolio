@@ -4,6 +4,7 @@ import './index.css'
 import ErrorBoundary from './components/common/ErrorBoundary.jsx'
 import App from './App.jsx'
 
+console.log("Starting App...");
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
@@ -11,3 +12,4 @@ createRoot(document.getElementById('root')).render(
     </ErrorBoundary>
   </StrictMode>,
 )
+

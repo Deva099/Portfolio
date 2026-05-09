@@ -12,7 +12,7 @@ const Timeline = () => {
   const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="timeline" className="min-h-screen relative py-20 overflow-hidden" ref={containerRef}>
+    <section id="education" className="min-h-screen relative py-20 overflow-hidden" ref={containerRef}>
 
       <div className="container mx-auto px-6 max-w-5xl">
 
@@ -37,13 +37,14 @@ const Timeline = () => {
 
         <div className="relative">
           {/* Continuous Line (Base) */}
-          <div className="absolute left-2.25~ md:left-1/2 top-2 bottom-0 w-px bg-white/5 md:-translate-x-1/2" />
+          <div className="absolute left-[9px] md:left-1/2 top-2 bottom-0 w-px bg-white/5 md:-translate-x-1/2" />
 
           {/* Continuous Line (Fill) */}
           <motion.div
             style={{ height }}
-            className="absolute left-2.25 md:left-1/2 top-2 w-px bg-linear-to-b from-teal-500 via-purple-500 to-transparent md:-translate-x-1/2 origin-top"
+            className="absolute left-[9px] md:left-1/2 top-2 w-px bg-gradient-to-b from-teal-500 via-purple-500 to-transparent md:-translate-x-1/2 origin-top"
           />
+
 
           <div className="space-y-16">
             {timeline.map((item, index) => (
@@ -58,7 +59,7 @@ const Timeline = () => {
                 {/* Period (Left or Right based on index) */}
                 <div className={`${index % 2 === 0 ? "md:text-right md:pr-8" : "md:col-start-2 md:pl-8 md:text-left"} pl-10 md:pl-0`}>
                   <span className="inline-block text-3xl md:text-4xl font-bold text-white/5 select-none absolute -top-4 md:top-0 left-10 md:relative md:left-0 z-0">
-                    {item.period.split(" - ")[0]}
+                    {item.period.split(" — ")[0]}
                   </span>
                   <div className="relative z-10 pt-2">
                     <motion.span
@@ -94,7 +95,14 @@ const Timeline = () => {
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-1 group-hover:text-teal-200 transition-colors">
                       {item.role}
                     </h3>
-                    <p className="text-lg text-zinc-400 mb-4 font-medium">{item.company}</p>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-2">
+                      <p className="text-lg text-zinc-400 font-medium">{item.company}</p>
+                      {item.grade && (
+                        <span className="text-xs font-bold text-purple-400 bg-purple-500/10 px-2 py-1 rounded border border-purple-500/20 self-start md:self-center">
+                          {item.grade}
+                        </span>
+                      )}
+                    </div>
 
                     <p className="text-zinc-500 text-sm leading-relaxed mb-6">
                       {item.description}

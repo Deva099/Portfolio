@@ -30,23 +30,26 @@ const Footer = () => {
 
       {/* MASSIVE BACKGROUND TEXT */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full select-none pointer-events-none">
-        <h1 className="text-[15vw] md:text-[20vw] font-black text-white/3 text-center leading-none tracking-tighter">
+        <h1 className="text-[15vw] md:text-[18vw] font-black text-white/[0.02] text-center leading-none tracking-tighter">
           {footerData.brand.logo}
         </h1>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-16">
 
           {/* Left: CTA */}
           <div className="space-y-8 max-w-lg">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-none">
-              {footerData.cta.title.replace(footerData.cta.highlightWord, '')} <br /> {footerData.cta.title.includes('together.') ? "Let's work" : ''} <span className="text-zinc-500">{footerData.cta.highlightWord}</span>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+              Have a project? <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500">
+                Let's work together.
+              </span>
             </h2>
-            <div className="flex flex-col sm:flex-row gap-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center px-8 py-3 bg-white text-black rounded-full font-bold hover:bg-zinc-200 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold tracking-wide transition-all duration-300 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 hover:-translate-y-1"
               >
                 {footerData.cta.buttonLabel}
               </Link>
@@ -57,7 +60,7 @@ const Footer = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-all"
+                    className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-purple-500/50 hover:bg-purple-500/10 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(139,92,246,0.2)] transition-all duration-300"
                   >
                     <social.icon size={18} />
                   </a>
@@ -67,13 +70,13 @@ const Footer = () => {
           </div>
 
           {/* Right: Minimal Nav */}
-          <div className="flex flex-col items-start md:items-end gap-2">
+          <div className="flex flex-col items-start md:items-end gap-4">
             {footerData.navigation.map((item, i) => (
               <HashLink
                 key={i}
                 smooth
                 to={item.href}
-                className="text-2xl md:text-3xl font-bold text-zinc-600 hover:text-white transition-colors tracking-tight"
+                className="text-xl md:text-2xl font-semibold text-zinc-500 hover:text-purple-400 hover:tracking-wider transition-all duration-300"
               >
                 {item.label}
               </HashLink>
@@ -83,12 +86,14 @@ const Footer = () => {
         </div>
 
         {/* Minimal Bottom Info */}
-        <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-600 font-mono uppercase tracking-wider">
-          <p>© {currentYear} {PERSONAL_INFO.fullName}.</p>
-          <p>Local Time: {formattedTime}</p>
-          <div className="flex gap-6">
+        <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-zinc-400 font-mono tracking-wide">
+          <p className="opacity-80">© {currentYear} {PERSONAL_INFO.fullName}.</p>
+          <p className="opacity-80">Local Time: {formattedTime}</p>
+          <div className="flex gap-8">
             {footerData.legal.map((item, i) => (
-              <Link key={i} to={item.href} className="hover:text-zinc-400 transition-colors">{item.label}</Link>
+              <Link key={i} to={item.href} className="opacity-80 hover:opacity-100 hover:text-purple-400 transition-colors">
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>

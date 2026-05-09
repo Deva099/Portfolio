@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, Mail, Sparkles, Github, Linkedin, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HERO_CONTENT } from "../../data/heroData";
+import { SOCIAL_LINKS, PERSONAL_INFO } from "../../data/personalData";
 
 const Hero = () => {
   const containerVariants = {
@@ -28,142 +29,178 @@ const Hero = () => {
     }
   };
 
-  const badges = HERO_CONTENT.technologies || [];
-
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full flex items-center bg-transparent overflow-hidden pt-24 pb-16 selection:bg-indigo-500/30"
+      className="relative min-h-screen w-full flex items-center bg-transparent overflow-hidden pt-28 pb-16 selection:bg-indigo-500/30"
     >
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8">
+      {/* Background Decorative Element */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none" />
 
-        {/* Left Column: Glassmorphism Content Area */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-8">
+
+        {/* Left Column: Content Area */}
         <motion.div
-          className="w-full lg:w-[55%] flex flex-col relative"
+          className="w-full lg:w-[50%] flex flex-col relative"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Main Glass Card */}
-          <div className="relative pt-8 md:pt-10 lg:pt-12">
-
-            {/* Subtle Inner Glow on Hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-            {/* Recruiter Friendly Status Badge */}
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8">
-              <span className="relative flex h-2.5 w-2.5">
+          <div className="relative">
+            {/* Status Badge */}
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8 backdrop-blur-md">
+              <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.8)]" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500" />
               </span>
-              <span className="text-indigo-300 text-sm font-medium tracking-wide">
+              <span className="text-indigo-300 text-[10px] font-bold tracking-[0.2em] uppercase">
                 {HERO_CONTENT.badge}
               </span>
             </motion.div>
 
             {/* Professional Headline */}
-            <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-4">
-              <span className="block text-gray-300 font-light text-2xl sm:text-3xl mb-2">{HERO_CONTENT.titleLine1}</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 drop-shadow-sm">
+            <motion.h1 variants={itemVariants} className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+              <span className="block text-zinc-500 font-light text-2xl sm:text-3xl mb-3 tracking-normal">{HERO_CONTENT.titleLine1}</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 drop-shadow-2xl">
                 {HERO_CONTENT.titleLine2}
               </span>
             </motion.h1>
 
-            {/* Title / Role */}
-            <motion.h2 variants={itemVariants} className="flex items-center gap-2 text-lg sm:text-xl text-indigo-200/90 font-medium mb-6">
-              <Sparkles className="text-purple-400" size={20} />
-              {HERO_CONTENT.role}
+            {/* Role */}
+            <motion.h2 variants={itemVariants} className="flex items-center gap-3 text-lg sm:text-xl text-indigo-100/80 font-medium mb-8">
+              <Sparkles className="text-amber-400" size={18} />
+              <span className="tracking-wide">{HERO_CONTENT.role}</span>
             </motion.h2>
 
-            {/* Impactful Tagline */}
-            <motion.p variants={itemVariants} className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-lg mb-10 font-normal">
+            {/* Tagline */}
+            <motion.p variants={itemVariants} className="text-zinc-300/90 text-lg leading-[1.8] max-w-xl mb-12 font-normal tracking-wide">
               {HERO_CONTENT.tagline}
             </motion.p>
 
             {/* CTA Buttons */}
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto mb-12">
               <a
                 href="#projects"
-                className="w-full sm:w-auto relative group flex items-center justify-center gap-2 bg-indigo-600 text-white px-8 py-3.5 rounded-xl font-medium transition-all duration-300 hover:bg-indigo-500 hover:shadow-[0_8px_20px_rgba(79,70,229,0.3)] hover:-translate-y-0.5"
+                className="w-full sm:w-auto group relative flex items-center justify-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-10 py-4 rounded-full font-bold transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(79,70,229,0.4)] active:scale-95 overflow-hidden"
               >
-                <span>{HERO_CONTENT.primaryButton.label}</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="relative z-10 tracking-tight">{HERO_CONTENT.primaryButton.label}</span>
+                <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />
               </a>
 
               <Link
                 to="/contact"
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-white/[0.05] border border-white/10 text-white font-medium hover:bg-white/[0.1] hover:border-white/20 transition-all duration-300 backdrop-blur-sm hover:-translate-y-0.5"
+                className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-4 rounded-full bg-zinc-900/50 border border-white/10 text-white font-bold hover:bg-white/10 hover:border-white/20 transition-all duration-500 backdrop-blur-xl hover:scale-105 active:scale-95"
               >
-                <Mail size={18} />
-                <span>{HERO_CONTENT.secondaryButton.label}</span>
+                <Mail size={20} className="text-indigo-400" />
+                <span className="tracking-tight">{HERO_CONTENT.secondaryButton.label}</span>
               </Link>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div variants={itemVariants} className="flex items-center gap-8">
+              <div className="flex items-center gap-6 text-zinc-500">
+                <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" className="hover:text-white transition-all duration-300 hover:-translate-y-1" title="GitHub">
+                  <Github size={22} />
+                </a>
+                <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noreferrer" className="hover:text-indigo-400 transition-all duration-300 hover:-translate-y-1" title="LinkedIn">
+                  <Linkedin size={22} />
+                </a>
+                <a href={PERSONAL_INFO.resume} target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-all duration-300 hover:-translate-y-1" title="Resume">
+                  <FileText size={22} />
+                </a>
+                <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:text-amber-400 transition-all duration-300 hover:-translate-y-1" title="Email">
+                  <Mail size={22} />
+                </a>
+              </div>
+              <div className="hidden sm:flex items-center gap-5">
+                <div className="h-[1px] w-8 bg-zinc-800" />
+                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-zinc-600 select-none">Connect</span>
+              </div>
             </motion.div>
           </div>
         </motion.div>
 
-        {/* Right Column: Profile Image Presentation */}
+        {/* Right Column: Visual Section */}
         <motion.div
-          className="w-full lg:w-[45%] flex justify-center items-center relative min-h-[400px]"
-          initial={{ opacity: 0, scale: 0.95 }}
+          className="w-full lg:w-[50%] flex justify-center items-center relative"
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 1, ease: "easeOut" }}
         >
-          <div className="relative w-full max-w-[380px] aspect-square flex items-center justify-center group">
+          <div className="relative w-full max-w-[550px] perspective-2000">
+            {/* Major Background Glow */}
+            <div className="absolute -inset-10 bg-gradient-to-tr from-indigo-500/10 via-purple-500/5 to-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-            {/* Soft Gradient Glow Behind Image */}
+            {/* Code Card */}
             <motion.div
-              animate={{
-                scale: [1, 1.02, 1],
-                opacity: [0.6, 0.8, 0.6]
-              }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-4 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full blur-[60px] opacity-60 z-0 transition-opacity duration-500 group-hover:opacity-80"
-            />
-
-            {/* Profile Image with subtle floating animation and 3D hover */}
-            <motion.div
-              animate={{ y: [-8, 8, -8] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-10 w-[80%] h-[80%] rounded-[2.5rem] bg-gradient-to-br from-white/10 to-transparent p-[1px] shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
-              style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+              whileHover={{ y: -5, rotateX: 2, rotateY: -2 }}
+              className="relative z-10 p-8 rounded-2xl bg-[#0d0d0f] border border-white/10 backdrop-blur-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-hidden group preserve-3d"
             >
-              <div className="w-full h-full rounded-[2.4rem] overflow-hidden bg-[#0c1222] relative group-hover:shadow-inner transition-shadow duration-500">
-                <img
-                  src={HERO_CONTENT.avatar}
-                  alt="Profile"
-                  className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
-                />
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-transparent opacity-50" />
+              
+              <div className="flex items-center gap-2 mb-8 border-b border-white/5 pb-4">
+                <div className="w-3 h-3 rounded-full bg-red-500/40 border border-red-500/20" />
+                <div className="w-3 h-3 rounded-full bg-amber-500/40 border border-amber-500/20" />
+                <div className="w-3 h-3 rounded-full bg-emerald-500/40 border border-emerald-500/20" />
+                <div className="ml-4 text-[10px] font-mono text-zinc-500 tracking-widest uppercase">profile.js</div>
               </div>
 
-              {/* Minimal Tech Badges Floating next to image */}
-              {badges.slice(0, 3).map((badge, idx) => {
+              <pre className="font-mono text-[15px] leading-relaxed overflow-x-auto custom-scrollbar selection:bg-indigo-500/30">
+                <code className="text-purple-500 font-bold">const</code> <code className="text-blue-500 font-bold">developer</code> <span className="text-zinc-300">=</span> <span className="text-zinc-300">{"{"}</span> <br />
+                {"  "} <code className="text-zinc-400">name:</code> <code className="text-emerald-400">"Dibakar Pradhan"</code>,<br />
+                {"  "} <code className="text-zinc-400">role:</code> <code className="text-emerald-400">"Full Stack Developer"</code>,<br />
+                {"  "} <code className="text-zinc-400">skills:</code> [<code className="text-amber-400">"React"</code>, <code className="text-amber-400">"Node.js"</code>, <code className="text-amber-400">"API"</code>],<br />
+                {"  "} <code className="text-zinc-400">passion:</code> <code className="text-emerald-400">"Scalable Apps"</code><br />
+                <span className="text-zinc-300">{"}"}</span><span className="text-zinc-300">;</span>
+              </pre>
+
+              {HERO_CONTENT.technologies.map((tech, idx) => {
                 const positions = [
-                  { top: '15%', left: '-10%' },
-                  { top: '45%', right: '-12%' },
-                  { bottom: '15%', left: '-5%' }
+                  { top: '-5px', right: '15%' },
+                  { bottom: '30%', right: '-15px' },
+                  { bottom: '-10px', left: '20%' },
+                  { top: '35%', left: '-15px' }
                 ];
                 return (
                   <motion.div
-                    key={badge.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 + (idx * 0.2) }}
-                    className="absolute z-20"
+                    key={tech.name}
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: idx * 1.2 }}
+                    className="absolute hidden sm:flex items-center justify-center p-3 rounded-xl bg-zinc-900 border border-white/10 shadow-xl z-20"
                     style={positions[idx]}
                   >
-                    <motion.div
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 }}
-                      className="w-12 h-12 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 backdrop-blur-md shadow-lg transition-transform duration-300 hover:scale-110"
-                      title={badge.name}
-                    >
-                      <span className="text-2xl">{badge.icon}</span>
-                    </motion.div>
+                    <span className="text-xl opacity-80" title={tech.name}>{tech.icon}</span>
                   </motion.div>
                 );
               })}
             </motion.div>
 
+            {/* Premium Profile Glass Card */}
+            <motion.div
+              initial={{ x: 30, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="absolute -bottom-10 -right-4 lg:-right-10 z-30 group"
+            >
+              <div className="relative p-2 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+                {/* Subtle Inner Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                
+                <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-[1.8rem] overflow-hidden border-2 border-indigo-500/30 shadow-[0_0_20px_rgba(99,102,241,0.2)]">
+                  <img 
+                    src={HERO_CONTENT.avatar} 
+                    alt="Profile" 
+                    className="w-full h-full object-cover object-top transition-all duration-1000 group-hover:scale-110 group-hover:rotate-1" 
+                  />
+                  {/* Overlay for better integration */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 via-transparent to-transparent opacity-60" />
+                </div>
+              </div>
+
+              {/* Floating Decorative Glow under the card */}
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-indigo-500/20 rounded-full blur-[40px] -z-10 group-hover:bg-indigo-500/40 transition-colors duration-700" />
+            </motion.div>
           </div>
         </motion.div>
 
